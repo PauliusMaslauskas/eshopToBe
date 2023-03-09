@@ -26,6 +26,10 @@ export default function ButtonAppBar() {
             Blue&Black Shop
           </Typography>
 
+          <Link to="/register" style={{ textDecoration: 'none' }}>
+            <Button variant="contained">Register</Button>
+          </Link>
+
           <Link to="/login" style={{ textDecoration: 'none' }}>
             <Button variant="contained">Login</Button>
           </Link>

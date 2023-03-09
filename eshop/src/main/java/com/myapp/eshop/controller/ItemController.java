@@ -11,7 +11,7 @@ import java.util.List;
 @RestController
 @AllArgsConstructor
 @RequestMapping("/items")
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:3000/")
 public class ItemController {
 
     private final ItemServiceImp itemService;
@@ -21,6 +21,7 @@ public class ItemController {
         return itemService.createItem(item).getId();
     }
 
+    @CrossOrigin
     @GetMapping("/getAll")
     public List<Item> getAllItems(){
        return itemService.getAllItems();

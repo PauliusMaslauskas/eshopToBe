@@ -1,4 +1,5 @@
 import * as React from 'react';
+import axios from 'axios';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -32,10 +33,13 @@ export default function SignIn() {
   const handleSubmit = (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
+    
+    const userData = {
+        username: data.get('username'),
+        password: data.get('password'),
+      }
+    axios.post('http://localhost:8080/api/auth/authenticate', userData)
+    console.log(userData)
   };
 
   return (
@@ -96,7 +100,7 @@ export default function SignIn() {
                 </Link>
               </Grid>
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link href="/login" variant="body2">
                   {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>

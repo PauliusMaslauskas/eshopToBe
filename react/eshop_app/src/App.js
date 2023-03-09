@@ -3,6 +3,7 @@ import Home from './pages/Home'
 import Appbar from './components/Appbar'
 import ItemForm from './pages/ItemForm';
 import LogInForm from './pages/LogInForm';
+import RegistrationForm from './pages/RegistrationForm';
 import { BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
         <Appbar/> 
         <Routes>
           <Route exact path='/' element={<Home/>}/>
+          <Route exact path='/register' element={<RegistrationForm/>}/>
           <Route exact path='/itemform' element={<ItemForm/>}/>
           <Route exact path='/login' element={<LogInForm/>} />
         </Routes>

@@ -16,7 +16,7 @@ public class AuthService {
 
     private final UserRepository userRepository;
 
-    public PasswordEncoder passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
     private final JwtService jwtService;
 
@@ -26,6 +26,7 @@ public class AuthService {
         var user = User.builder()
                 .firstName(request.getFirstName())
                 .lastName(request.getLastName())
+                .username(request.getUsername())
                 .userEmail(request.getEmail())
                 .password(passwordEncoder.encode(request.getPassword()))
                 .role(Role.USER)
@@ -45,9 +46,11 @@ public class AuthService {
                         request.getPassword()
                 )
         );
+
         var user = userRepository.findByUsername(request.getUsername())
                 .orElseThrow();
         var jwtToken = jwtService.generateToken(user);
+
         return AuthResponse.builder()
                 .token(jwtToken)
                 .build();

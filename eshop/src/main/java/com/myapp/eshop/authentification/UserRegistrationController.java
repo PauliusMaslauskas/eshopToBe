@@ -1,26 +1,16 @@
 package com.myapp.eshop.authentification;
 
-import com.myapp.eshop.entity.User;
-import lombok.AllArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
-@Controller
-@AllArgsConstructor
-@RequestMapping(path = "/api/register")
+@RequiredArgsConstructor
+@RestController
+@RequestMapping(path = "/api/auth")
+@CrossOrigin(origins = "http://localhost:3000/")
 public class UserRegistrationController {
 
     private final AuthService authService;
-
-    @GetMapping("/register")
-    public Model getRegistrationForm(Model model) {
-        return model.addAttribute("user", new User());
-    }
 
     @PostMapping("/register")
     public ResponseEntity<AuthResponse> registerUser(@RequestBody RegisterRequest request){
